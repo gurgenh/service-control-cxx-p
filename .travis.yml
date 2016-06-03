@@ -23,4 +23,9 @@ install:
 script:
   - bazel version
   - script/setup
-  - bazel test :all
+  - bazel test :simple_lru_cache_test
+  - bazel test :check_aggregator_impl_test
+  - bazel test :distribution_helper_test
+  - bazel test :md5_test
+  - bazel test :money_utils_test
+  - bazel test :operation_aggregator_test
