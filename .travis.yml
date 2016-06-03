@@ -23,4 +23,4 @@ install:
 script:
   - bazel version
   - script/setup
-  - bazel test all --test_output=error
+  - bazel test all --test_output=errors
