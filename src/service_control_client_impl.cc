@@ -167,11 +167,11 @@ void ServiceControlClientImpl::Check(const CheckRequest& check_request,
 
 Status ServiceControlClientImpl::Check(const CheckRequest& check_request,
                                        CheckResponse* check_response) {
-  StatusPromise status_promise;
-  StatusFuture status_future = status_promise.get_future();
+  auto status_promise = std::make_shared<StatusPromise>();
+  StatusFuture status_future = status_promise->get_future();
 
   Check(check_request, check_response,
-        [&status_promise](Status status) { status_promise.set_value(status); });
+        [status_promise](Status status) { status_promise->set_value(status); });
 
   status_future.wait();
   return status_future.get();
@@ -205,11 +205,11 @@ void ServiceControlClientImpl::Report(const ReportRequest& report_request,
 
 Status ServiceControlClientImpl::Report(const ReportRequest& report_request,
                                         ReportResponse* report_response) {
-  StatusPromise status_promise;
-  StatusFuture status_future = status_promise.get_future();
+  auto status_promise = std::make_shared<StatusPromise>();
+  StatusFuture status_future = status_promise->get_future();
 
-  Report(report_request, report_response, [&status_promise](Status status) {
-    status_promise.set_value(status);
+  Report(report_request, report_response, [status_promise](Status status) {
+    status_promise->set_value(status);
   });
 
   status_future.wait();
