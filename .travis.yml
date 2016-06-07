@@ -21,6 +21,5 @@ install:
   - ./bazel-0.2.3-installer-linux-x86_64.sh --user
 
 script:
-  - bazel version
   - script/setup
-  - bazel test :service_control_client_impl_test --test_output=all
+  - bazel test :all --test_output=errors
