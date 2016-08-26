@@ -14,7 +14,6 @@ It offers:
 
 [TOC]
 
-
 ## Getting Service Control Client library ##
 
 To download the service control client source code, clone the repository:
